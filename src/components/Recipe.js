@@ -5,7 +5,7 @@ export default class Recipe extends Component {
     render() { 
         const {image_url, title, source_url, publisher, recipe_id} = this.props.recipe;
         return (
-            <div className="col-10 mx-auto col-md-6 col-lg-4 my-3">
+            <div className="col-10 mx-auto col-md-6 col-lg-4 my-3" key={recipe_id}>
                 <div className="card" style={{height: '100%'}}>
                     <img 
                         src={image_url} 
@@ -28,6 +28,7 @@ export default class Recipe extends Component {
                             target="_blank"
                             rel="noopener noreferrer"
                             className="btn btn-success mx-2 text-capitalize"
+                            
                         >
                             recipe url
                         </a>

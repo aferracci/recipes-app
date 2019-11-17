@@ -19,7 +19,7 @@ export default class RecipeList extends Component {
                     <div className="row">
                         {recipes.map(recipe => (
                             <Recipe key={recipe.id} recipe={recipe} />
-                            ))}
+                        ))}
                     </div>
                 </div> 
             </>
