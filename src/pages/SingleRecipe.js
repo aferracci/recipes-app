@@ -7,9 +7,34 @@ export default class SingleRecipe extends Component {
         super(props);
         const id = this.props.match.params.id;
         this.state = {
-            recipe: recipeData,
+            //recipe: recipeData,
+            recipe: {},
             id,
-            loading: false
+            loading: true
+        }
+    }
+
+    async componentDidMount() {
+        const url = "https://www.food2fork.com/api/get?key=" + 
+            process.env.REACT_APP_API_KEY + 
+            "&rid=" + this.state.id;
+
+        try {
+            const response = await fetch(url);
+            const responseData = await response.json();
+            console.log(responseData);
+            if (responseData.recipe.length > 0) {
+                console.log("fetch data is not empty");
+                this.setState({
+                    recipe: responseData.recipe,
+                    loading: false
+                });
+            } else {
+                console.log("fetch data is empty...");
+                //responseData.recipe = [];
+            }
+        } catch (error) {
+            console.log("error during fatching data: " + error);
         }
     }
 
